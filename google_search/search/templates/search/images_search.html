@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Image Search</title>
+    <style>
+        .search-container {
+            text-align: center;
+        }
+        .right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="right">
+        <a href="{% url 'search:index' %}">Google Search</a>
+        </div>
+    </nav>
+    <div class="search-container">
+        <form onsubmit="submitForm(); return false;" action="{% url 'search:images_search' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="images_searchBox" placeholder="Enter image search query">
+            <br>
+            <button type="submit">images_Search</button>
+        </form>
+
+        <script>
+        function submitForm() {
+            var query = document.getElementById("images_searchBox").value;
+            if (query !== "") {
+                var url = "https://google.com/?q=" + encodeURIComponent(query);
+                window.location.href = url;
+            }
+        }
+        </script>
+    </div>
+
+</body>
+</html>
