@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Advanced Search</title>
+    <style>
+        .search-container {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="right">
+        <a href="{% url 'search:index' %}">Google Search</a>
+        </div>
+    </nav>
+    <div class="search-container">
+        <form onsubmit="submitForm(); return false;" action="{% url 'search:advanced_search' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="1_searchBox" placeholder="all this worlds">
+            <br>
+            <input type="text" id="2_searchBox" placeholder="exact world">
+            <br>
+            <input type="text" id="3_searchBox" placeholder="all of this worlds">
+            <br>
+            <input type="text" id="4_searchBox" placeholder="none of these worlds">
+            <br>
+            <button type="submit">advanced_Search</button>
+        </form>
+
+        <script>
+        function submitForm() {
+            var query1 = document.getElementById("1_searchBox").value;
+            var query2 = document.getElementById("2_searchBox").value;
+            var query3 = document.getElementById("3_searchBox").value;
+            var query4 = document.getElementById("4_searchBox").value;
+            if (query1 !== "") {
+                var url = "https://google.com/?q=" + encodeURIComponent(query1);
+                window.location.href = url;
+            }
+            else if (query2 !== "") {
+                var url = "https://google.com/?q=" + encodeURIComponent(query2);
+                window.location.href = url;
+            }
+            else if (query3 !== "") {
+                var url = "https://google.com/?q=" + encodeURIComponent(query3);
+                window.location.href = url;
+            }
+            else if (query4 !== "") {
+                var url = "https://google.com/?q=" + encodeURIComponent(query4);
+                window.location.href = url;
+            }
+        }
+        </script>
+    </div>
+</body>
+</html>
